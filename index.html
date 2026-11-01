@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="SISYA ABHYASA helps students turn learning into engineering experience through projects, collaboration and demonstrable skills.">
+<title>SISYA ABHYASA — Learn. Build. Prove. Grow.</title>
+<style>
+:root {
+  --site-primary: #064E40;
+  --site-secondary: #087F6E;
+  --site-background: #F5F2E9;
+  --site-on-primary: #FFFFFF;
+  --site-on-secondary: #FFFFFF;
+  --site-on-background: #17352E;
+  --site-font-body: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --site-font-heading: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --site-heading-scale: 1;
+  --site-spacing-scale: 1;
+  --site-radius-scale: 1;
+  --site-decoration-opacity: 1;
+  color-scheme: light dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; font-family: var(--site-font-body); background: light-dark(#F5F2E9,#111A17); color: light-dark(#17352E,#E8F1EC); }
+#app { min-height: 100vh; width: 100%; border-radius: 0; background-color: light-dark(var(--site-background),#111A17); color: light-dark(var(--site-on-background),#E8F1EC); overflow: hidden; }
+a { color: inherit; text-decoration: none; }
+button, input, textarea, select { font: inherit; }
+button { cursor: pointer; }
+.container { width: min(1160px, calc(100% - 44px)); margin: 0 auto; }
+.site-header { position: sticky; top: 0; z-index: 20; background: light-dark(rgba(245,242,233,.92),rgba(17,26,23,.92)); backdrop-filter: blur(16px); border-bottom: 1px solid light-dark(#dce5dc,#30433b); }
+.nav { min-height: 76px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+.brand { display:flex; align-items:center; gap:11px; font-weight:850; letter-spacing:-.04em; font-size:18px; white-space:nowrap; }
+.brand-mark { width:38px; height:38px; border-radius:13px; display:grid; place-items:center; color:white; background:var(--site-primary); font-family:Georgia,serif; font-size:23px; }
+.brand small { display:block; font-size:9px; letter-spacing:.18em; color:var(--site-secondary); margin-top:2px; }
+.nav-links { display:flex; align-items:center; gap:23px; font-size:13px; font-weight:650; color:light-dark(#52675f,#b4c8be); }
+.nav-links a:hover,.nav-links a.active { color:var(--site-secondary); }
+.nav-actions { display:flex; align-items:center; gap:10px; }
+.btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; border:1px solid transparent; border-radius:999px; padding:12px 18px; font-size:13px; font-weight:750; transition:.2s ease; }
+.btn-primary { background:var(--site-primary); color:#fff; }
+.btn-primary:hover { background:var(--site-secondary); transform:translateY(-1px); }
+.btn-outline { border-color:light-dark(#b8c9be,#496057); color:inherit; background:transparent; }
+.btn-outline:hover { border-color:var(--site-secondary); color:var(--site-secondary); }
+.btn-soft { background:light-dark(#e3eee6,#20372e); color:light-dark(#064E40,#bdebd5); }
+.menu-toggle { display:none; border:1px solid light-dark(#cbd9cf,#40574c); background:transparent; color:inherit; border-radius:12px; padding:9px 12px; }
+.hero { padding:88px 0 74px; position:relative; overflow:hidden; }
+.hero:before { content:""; position:absolute; width:520px; height:520px; border-radius:50%; background:radial-gradient(circle,rgba(81,198,163,.22),transparent 68%); right:-130px; top:-190px; opacity:var(--site-decoration-opacity); pointer-events:none; }
+.hero-grid { display:grid; grid-template-columns:1.03fr .97fr; align-items:center; gap:60px; position:relative; }
+.eyebrow { display:inline-flex; align-items:center; gap:8px; color:var(--site-secondary); font-size:11px; font-weight:850; letter-spacing:.15em; text-transform:uppercase; }
+.dot { width:7px; height:7px; border-radius:50%; background:#51C6A3; box-shadow:0 0 0 5px rgba(81,198,163,.15); }
+h1,h2,h3,h4,p { margin-top:0; }
+h1 { font-family:var(--site-font-heading); font-size:clamp(42px,6vw,72px); line-height:1.02; letter-spacing:-.065em; margin:22px 0; max-width:700px; }
+h2 { font-size:clamp(30px,4vw,46px); line-height:1.08; letter-spacing:-.05em; margin:14px 0 16px; }
+h3 { font-size:21px; letter-spacing:-.035em; margin-bottom:10px; }
+.lead { color:light-dark(#587067,#b4c8be); font-size:18px; line-height:1.75; max-width:610px; }
+.hero-actions { display:flex; gap:12px; flex-wrap:wrap; margin:30px 0 22px; }
+.microcopy { font-size:12px; color:light-dark(#75867e,#91a69a); }
+.hero-visual { position:relative; }
+.product-window { border:1px solid light-dark(#d3dfd5,#34483e); background:light-dark(#fffdf7,#1a2923); border-radius:26px; padding:17px; box-shadow:0 28px 80px rgba(6,78,64,.13); transform:rotate(1.3deg); }
+.window-top { display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid light-dark(#e5ece4,#34483e); padding:2px 3px 14px; margin-bottom:15px; }
+.window-dots { display:flex; gap:5px; }.window-dots i { width:7px;height:7px;border-radius:50%;background:#a8bdb0; }
+.window-label { font-size:10px; font-weight:800; color:var(--site-secondary); letter-spacing:.12em; }
+.dash-title { font-size:17px; font-weight:850; letter-spacing:-.04em; }
+.dash-sub { color:#82948b; font-size:10px; margin-top:4px; }
+.dash-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:15px; }
+.dash-card { background:light-dark(#f2f6ef,#22362d); border:1px solid light-dark(#e4ebe2,#34483e); border-radius:15px; padding:13px; min-height:105px; }
+.dash-card span { display:block; font-size:9px; color:#7c9287; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
+.dash-card strong { display:block; font-size:22px; margin:9px 0 3px; letter-spacing:-.05em; color:light-dark(#164d3e,#d5f1e3); }
+.dash-card small { color:#81958a; font-size:10px; }
+.progress { height:6px; border-radius:9px; background:light-dark(#dce8dc,#3a5145); margin-top:10px; overflow:hidden; }
+.progress b { display:block; height:100%; width:68%; background:#51C6A3; border-radius:9px; }
+.task-line { display:flex; align-items:center; gap:9px; padding:9px 0; border-bottom:1px solid light-dark(#e8eee6,#34483e); font-size:10px; }
+.task-line:last-child { border:0; }.task-check { width:17px;height:17px;border-radius:6px;background:#d8f2e4;color:#087f6e;display:grid;place-items:center;font-size:11px;font-weight:900; }
+.floating-note { position:absolute; bottom:-20px; left:-28px; background:var(--site-primary); color:#fff; padding:14px 17px; border-radius:15px; box-shadow:0 15px 35px rgba(6,78,64,.2); font-size:11px; max-width:190px; }
+.floating-note strong { display:block; font-size:13px; margin-bottom:4px; }
+.trust-strip { border-top:1px solid light-dark(#dce5dc,#30433b); border-bottom:1px solid light-dark(#dce5dc,#30433b); padding:21px 0; }
+.trust-inner { display:flex; justify-content:space-between; gap:20px; align-items:center; flex-wrap:wrap; }
+.trust-item { font-size:11px; font-weight:800; letter-spacing:.09em; color:light-dark(#70857a,#9bb0a4); text-transform:uppercase; }
+.section { padding:86px 0; }
+.section.alt { background:light-dark(#edf1e8,#17241e); }
+.section.dark { background:var(--site-primary); color:#fff; }
+.section-head { max-width:700px; margin-bottom:38px; }
+.section-head.center { text-align:center; margin-left:auto; margin-right:auto; }
+.section-head p { color:light-dark(#657b70,#adc2b7); line-height:1.7; font-size:16px; }
+.section.dark .section-head p { color:#c0d9ce; }
+.cards { display:grid; grid-template-columns:repeat(3,1fr); gap:17px; }
+.card { background:light-dark(#fffdf7,#1b2a23); border:1px solid light-dark(#dce6dc,#34483e); border-radius:20px; padding:24px; min-height:190px; }
+.card-icon { width:42px;height:42px;border-radius:13px;background:light-dark(#e4f1e7,#244537);display:grid;place-items:center;color:var(--site-secondary);font-size:19px;margin-bottom:20px; }
+.card p { color:light-dark(#6a7e73,#a8bcb1); font-size:14px; line-height:1.7; margin-bottom:0; }
+.card .tag { display:inline-block; margin-top:16px; font-size:10px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--site-secondary); }
+.journey { display:grid; grid-template-columns:repeat(6,1fr); gap:10px; }
+.journey-step { border-top:2px solid #51C6A3; padding:17px 12px 0; }
+.journey-step b { font-size:11px; color:var(--site-secondary); letter-spacing:.1em; }
+.journey-step h3 { font-size:17px; margin:10px 0 7px; }
+.journey-step p { font-size:12px; line-height:1.6; color:light-dark(#71847a,#a9bdb2); }
+.feature-split { display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center; }
+.feature-list { list-style:none; padding:0; margin:24px 0; display:grid; gap:13px; }
+.feature-list li { display:flex; gap:11px; align-items:flex-start; font-size:14px; line-height:1.55; color:light-dark(#61776c,#b2c6ba); }
+.tick { flex:none; width:21px;height:21px;border-radius:50%;display:grid;place-items:center;background:#d9f1e3;color:#087f6e;font-size:12px;font-weight:900; }
+.proof-panel { background:light-dark(#fffdf7,#1b2a23); border:1px solid light-dark(#dce6dc,#34483e); border-radius:22px; padding:25px; }
+.proof-row { display:flex; align-items:center; gap:13px; padding:13px 0; border-bottom:1px solid light-dark(#e7eee5,#34483e); }
+.proof-row:last-child { border:0; }
+.proof-num { width:29px;height:29px;border-radius:10px;background:#e1f1e5;color:#087f6e;display:grid;place-items:center;font-size:11px;font-weight:900; }
+.proof-row strong { font-size:13px; display:block; }.proof-row small { font-size:10px; color:#82958b; }
+.agent-card { position:relative; overflow:hidden; }
+.agent-card:after { content:""; position:absolute; width:120px;height:120px;border-radius:50%;background:rgba(81,198,163,.08);right:-40px;top:-40px; }
+.status { display:inline-flex; border-radius:999px; padding:6px 9px; font-size:9px; font-weight:850; text-transform:uppercase; letter-spacing:.08em; background:light-dark(#e9efe8,#293b31); color:light-dark(#5f7669,#b8cdbf); }
+.status.demo { background:#fff1d9;color:#8a5a12; }
+.status.planned { background:#ece9f8;color:#62539a; }
+.cta-band { background:var(--site-primary); color:white; border-radius:26px; padding:45px; display:flex; justify-content:space-between; align-items:center; gap:25px; }
+.cta-band p { color:#c6ddd2; max-width:600px; line-height:1.7; margin:0; }
+.page-hero { padding:72px 0 54px; background:light-dark(#edf1e8,#17241e); border-bottom:1px solid light-dark(#dce5dc,#30433b); }
+.page-hero h1 { font-size:clamp(38px,5vw,58px); max-width:850px; }
+.page-hero .lead { font-size:16px; max-width:760px; }
+.breadcrumb { font-size:11px; color:var(--site-secondary); font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
+.two-col { display:grid; grid-template-columns:1fr 1fr; gap:28px; }
+.panel { border:1px solid light-dark(#dce6dc,#34483e); background:light-dark(#fffdf7,#1b2a23); border-radius:20px; padding:25px; }
+.panel p { color:light-dark(#687e72,#a9bdb2); line-height:1.7; font-size:14px; }
+.roadmap { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.roadmap .card { min-height:160px; }
+.demo-shell { border:1px solid light-dark(#dce6dc,#34483e); border-radius:22px; background:light-dark(#fffdf7,#1b2a23); overflow:hidden; }
+.demo-top { display:flex; justify-content:space-between; align-items:center; padding:17px 20px; border-bottom:1px solid light-dark(#dce6dc,#34483e); }
+.demo-body { display:grid; grid-template-columns:190px 1fr; min-height:390px; }
+.demo-side { padding:17px; background:light-dark(#f0f4ed,#17241e); border-right:1px solid light-dark(#dce6dc,#34483e); }
+.demo-tab { display:block; width:100%; border:0; text-align:left; padding:11px 12px; border-radius:10px; background:transparent; color:inherit; font-size:12px; margin-bottom:5px; }
+.demo-tab.active { background:var(--site-primary); color:white; }
+.demo-content { padding:25px; }
+.demo-metric-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:20px 0; }
+.metric { border:1px solid light-dark(#dce6dc,#34483e); border-radius:14px; padding:15px; }
+.metric small { display:block; color:#82958b; font-size:10px; }.metric strong { display:block; font-size:22px; margin-top:7px; }
+.form-grid { display:grid; grid-template-columns:1fr 1fr; gap:15px; }
+.field { display:grid; gap:7px; margin-bottom:14px; }
+.field.full { grid-column:1/-1; }
+.field label { font-size:11px; font-weight:800; color:light-dark(#60776b,#b6c9bd); }
+.field input,.field select,.field textarea { width:100%; border:1px solid light-dark(#cad9cd,#42594e); background:light-dark(#fff,#14211b); color:inherit; border-radius:11px; padding:12px 13px; outline:none; font-size:13px; }
+.field textarea { min-height:100px; resize:vertical; }
+.field input:focus,.field select:focus,.field textarea:focus { border-color:var(--site-secondary); box-shadow:0 0 0 3px rgba(8,127,110,.12); }
+.notice { border:1px solid #e4d5ad; background:light-dark(#fff8e8,#3a3020); color:light-dark(#775a22,#f0dba9); border-radius:13px; padding:13px 15px; font-size:11px; line-height:1.6; margin:18px 0; }
+.success-msg { display:none; border:1px solid #9acbb0; background:light-dark(#e8f7ed,#1d3b2b); color:light-dark(#205b3b,#b8ebca); padding:13px; border-radius:12px; margin-top:12px; font-size:12px; }
+.footer { background:light-dark(#e9eee5,#101b16); border-top:1px solid light-dark(#dce5dc,#30433b); padding:52px 0 24px; }
+.footer-grid { display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:30px; }
+.footer p { color:light-dark(#71847a,#a7b9ae); font-size:13px; line-height:1.7; max-width:300px; }
+.footer h4 { font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--site-secondary); margin-bottom:15px; }
+.footer a { display:block; font-size:12px; margin:10px 0; color:light-dark(#60756a,#b4c6bb); }
+.footer a:hover { color:var(--site-secondary); }
+.footer-bottom { display:flex; justify-content:space-between; gap:15px; border-top:1px solid light-dark(#d7e1d7,#30433b); margin-top:35px; padding-top:20px; color:#82958b; font-size:10px; }
+.mobile-nav { display:none; }
+.toast { position:fixed; z-index:50; bottom:20px; left:50%; transform:translate(-50%,20px); opacity:0; pointer-events:none; background:#064E40; color:white; padding:13px 18px; border-radius:13px; box-shadow:0 12px 35px rgba(0,0,0,.2); font-size:12px; transition:.25s; }
+.toast.show { opacity:1; transform:translate(-50%,0); }
+
+#fluidCanvas {position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.75}
+.hero-grid,.hero>.container{position:relative;z-index:1}
+.magnetic{will-change:transform;transition:transform .18s cubic-bezier(.2,.8,.2,1),box-shadow .2s}
+.magnetic:hover{box-shadow:0 12px 30px rgba(8,127,110,.2)}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.75,.2,1)}
+.reveal.is-visible{opacity:1;transform:translateY(0)}
+.story-lit{color:#51C6A3;transform:translateY(-2px)}
+.full-workspace{border:1px solid light-dark(#dce6dc,#34483e);border-radius:22px;background:light-dark(#fffdf7,#1b2a23);overflow:hidden}
+.full-workspace-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:17px 20px;border-bottom:1px solid light-dark(#dce6dc,#34483e)}
+.full-workspace-head small{display:block;color:#82958b;font-size:11px;margin-top:5px}
+.demo-flag{font-size:9px;font-weight:850;letter-spacing:.1em;color:#8a5a12;background:#fff1d9;border-radius:30px;padding:7px 10px}
+.full-workspace-body{display:grid;grid-template-columns:205px minmax(0,1fr);min-height:560px}
+.full-workspace-nav{padding:14px;background:light-dark(#f0f4ed,#17241e);border-right:1px solid light-dark(#dce6dc,#34483e)}
+.full-tab{display:block;width:100%;text-align:left;border:0;background:transparent;color:inherit;padding:11px 12px;border-radius:10px;font-size:12px;margin-bottom:4px;cursor:pointer}
+.full-tab:hover{background:light-dark(#e2eee4,#20372d)}
+.full-tab.active{background:var(--site-primary);color:#fff}
+.full-nav-label{font-size:9px;font-weight:850;letter-spacing:.13em;color:#82958b;padding:16px 10px 7px}
+.full-workspace-content{padding:24px;min-width:0}
+.full-workspace-content h3{margin:10px 0 7px}
+.f-muted{font-size:12px;line-height:1.65;color:#82958b}
+.f-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:17px 0}
+.f-tile,.f-box{border:1px solid light-dark(#dce6dc,#34483e);border-radius:13px;padding:14px;background:light-dark(#fff,#1b2a23)}
+.f-tile small{display:block;color:#82958b;font-size:10px}
+.f-tile strong{display:block;font-size:19px;margin-top:6px;overflow-wrap:anywhere}
+.f-box{margin-top:13px}
+.f-box>strong{font-size:13px}
+.f-row{display:flex;align-items:flex-start;gap:10px;padding:11px 0;border-bottom:1px solid light-dark(#e7eee5,#34483e);font-size:12px}
+.f-row:last-child{border-bottom:0}
+.f-row small{display:block;color:#82958b;font-size:10px;line-height:1.5;margin-top:4px}
+.f-chip{display:inline-flex;flex:none;border-radius:30px;padding:5px 8px;background:light-dark(#e8f2e9,#263c31);color:var(--site-secondary);font-size:9px;font-weight:850}
+.f-chip.warn{background:#fff1d9;color:#8a5a12}
+.f-chip.purple{background:#ece9f8;color:#62539a}
+.f-btn{border:1px solid light-dark(#cbd9ce,#40594d);background:transparent;color:inherit;border-radius:9px;padding:7px 10px;font-size:10px;font-weight:750;cursor:pointer}
+.f-btn.primary{background:var(--site-primary);color:#fff;border-color:var(--site-primary)}
+.f-kanban{display:grid;grid-template-columns:repeat(4, minmax(120px,1fr));gap:8px;overflow-x:auto;margin-top:12px}
+.f-kanban-col{background:light-dark(#f0f4ed,#17241e);border-radius:10px;padding:9px}
+.f-kanban-col b{font-size:10px}
+.f-task{background:light-dark(#fff,#22332b);border:1px solid light-dark(#e0e9df,#34483e);border-radius:8px;padding:9px;margin-top:8px;font-size:10px;line-height:1.5}
+.f-avatar{width:36px;height:36px;border-radius:12px;background:#d8efe0;color:#075341;display:grid;place-items:center;font-weight:900;flex:none}
+@media(max-width:760px){.full-workspace-body{grid-template-columns:1fr}.full-workspace-nav{display:flex;overflow-x:auto;border-right:0;border-bottom:1px solid light-dark(#dce6dc,#34483e);gap:4px}.full-tab{width:auto;white-space:nowrap;flex:none}.full-nav-label{display:none}.full-workspace-content{padding:16px}.f-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.f-kanban{grid-template-columns:repeat(4,145px)}}
+@media(prefers-reduced-motion:reduce){.reveal,.magnetic{transition:none!important}#fluidCanvas{display:none}}
+
+@media (max-width:900px) {
+ .nav-links { display:none; }.menu-toggle { display:block; }.mobile-nav.open { display:grid; padding:0 0 18px; gap:12px; }.mobile-nav a { font-size:13px; padding:8px 0; color:light-dark(#52675f,#b4c8be); }
+ .hero-grid,.feature-split { grid-template-columns:1fr; gap:40px; }.hero { padding:65px 0; }.hero-visual { max-width:650px; margin:auto; width:100%; }
+ .journey { grid-template-columns:repeat(3,1fr); row-gap:25px; }.cards { grid-template-columns:repeat(2,1fr); }.footer-grid { grid-template-columns:1fr 1fr; }
+}
+@media (max-width:600px) {
+ .container { width:min(100% - 30px,1160px); }.nav { min-height:66px; }.nav-actions .btn-outline { display:none; }.brand { font-size:15px; }.brand-mark { width:34px;height:34px; }
+ .hero { padding:53px 0 60px; } h1 { font-size:43px; }.lead { font-size:15px; }.section { padding:63px 0; }
+ .cards,.two-col,.roadmap { grid-template-columns:1fr; }.journey { grid-template-columns:repeat(2,1fr); }.cta-band { padding:28px; display:block; }.cta-band .btn { margin-top:20px; }
+ .footer-grid { grid-template-columns:1fr 1fr; gap:22px; }.footer-grid>div:first-child { grid-column:1/-1; }.footer-bottom { display:block; line-height:1.8; }
+ .demo-body { grid-template-columns:1fr; }.demo-side { display:flex; overflow:auto; border-right:0; border-bottom:1px solid light-dark(#dce6dc,#34483e); gap:5px; }.demo-tab { width:auto; white-space:nowrap; }.demo-metric-grid { grid-template-columns:1fr 1fr; }
+ .form-grid { grid-template-columns:1fr; }.field.full { grid-column:auto; }.product-window { padding:12px; }.floating-note { left:-5px; bottom:-28px; }.trust-inner { justify-content:center; }
+}
+
+/* Refined early-access form card: warmer surface, stronger contrast, consistent typography */
+#early-access { 
+  background: #f5f2e9;
+  color: #173f34;
+  border: 1px solid rgba(6,78,64,.12);
+  border-radius: 24px;
+  padding: 30px;
+  box-shadow: 0 18px 50px rgba(4,38,30,.14);
+  font-family: inherit;
+}
+#early-access .section-head { margin-bottom: 24px; }
+#early-access .section-head h2 {
+  color: #064e40 !important;
+  font-family: inherit;
+  font-weight: 750;
+  letter-spacing: -.045em;
+}
+#early-access .section-head p {
+  color: #526b60 !important;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.7;
+}
+#early-access .field label {
+  color: #244f42;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: -.01em;
+}
+#early-access .field input,
+#early-access .field select,
+#early-access .field textarea {
+  background: #fffefa;
+  color: #183f34;
+  border: 1px solid #cbd8cc;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 13px;
+  box-shadow: 0 2px 5px rgba(14,55,40,.035);
+}
+#early-access .field input::placeholder,
+#early-access .field textarea::placeholder { color: #82958a; }
+#early-access .field input:focus,
+#early-access .field select:focus,
+#early-access .field textarea:focus {
+  border-color: #087f6e;
+  box-shadow: 0 0 0 3px rgba(8,127,110,.13);
+}
+#early-access form > label {
+  color: #526b60 !important;
+  font-family: inherit;
+  font-size: 11px !important;
+}
+#early-access form > label input { accent-color: #087f6e; }
+#early-access form > .btn {
+  background: #064e40 !important;
+  color: #fff !important;
+  border: 1px solid #064e40;
+  border-radius: 12px;
+  font-family: inherit;
+  font-weight: 700;
+}
+#early-access form > .btn:hover {
+  background: #087f6e !important;
+  border-color: #087f6e;
+}
+#early-access .success-msg { color: #17634e; }
+@media(max-width:600px) {
+  #early-access { padding: 21px 17px; border-radius: 18px; }
+  #early-access .section-head h2 { font-size: 29px !important; }
+}
+
+</style>
+</head>
+<body>
+<div id="app">
+<header class="site-header">
+ <div class="container">
+  <nav class="nav" aria-label="Main navigation">
+   <a class="brand" href="#home" aria-label="SISYA ABHYASA home"><span class="brand-mark">SA</span><span>SISYA ABHYASA<small>LEARN · BUILD · PROVE · GROW</small></span></a>
+   <div class="nav-links" id="desktopLinks">
+    <a href="#how-it-works">How it works</a><a href="#student-workspace">Student workspace</a><a href="#learn">Learn</a><a href="#build">Build</a><a href="#prove">Prove</a><a href="#ai-agents">AI agents</a><a href="#about">About</a>
+   </div>
+   <div class="nav-actions"><a class="btn btn-outline" href="#roadmap">Our roadmap</a><a class="btn btn-primary" href="#student-workspace">Explore demo ↗</a><button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button></div>
+  </nav>
+  <div class="mobile-nav" id="mobileNav">
+   <a href="#how-it-works">How it works</a><a href="#student-workspace">Student workspace</a><a href="#learn">Learn</a><a href="#build">Build</a><a href="#collaborate">Collaborate</a><a href="#prove">Prove</a><a href="#career">Career Intelligence</a><a href="#ai-agents">AI agents</a><a href="#colleges">For colleges</a><a href="#recruiters">For recruiters</a><a href="#about">About</a><a href="#roadmap">Roadmap</a>
+  </div>
+ </div>
+</header>
+<main id="main">
+<section class="hero" id="home"><canvas id="fluidCanvas" aria-hidden="true"></canvas>
+ <div class="container hero-grid">
+  <div>
+   <span class="eyebrow"><i class="dot"></i> A new approach to engineering growth</span>
+   <h1>Turn what you learn into <span style="color:var(--site-secondary)">what you can build.</span></h1>
+   <p class="lead">SISYA ABHYASA is a student development platform designed to connect personalized learning, real-world projects, meaningful collaboration and demonstrable engineering skills.</p>
+   <div class="hero-actions"><a class="btn btn-primary" href="#how-it-works">Explore the journey ↗</a><a class="btn btn-outline" href="#demo">Try the interactive demo</a></div>
+   <div class="microcopy">A developing platform. Explore the vision, experience a simulated demo and help shape what comes next.</div>
+  </div>
+  <div class="hero-visual">
+   <div class="product-window">
+    <div class="window-top"><div class="window-dots"><i></i><i></i><i></i></div><span class="window-label">STUDENT DEVELOPMENT OVERVIEW</span><span style="font-size:10px;color:#82958b">PREVIEW</span></div>
+    <div class="dash-title">Your engineering journey</div><div class="dash-sub">A connected view of learning, projects and progress</div>
+    <div class="dash-grid">
+     <div class="dash-card"><span>Learning path</span><strong>68%</strong><small>Illustrative progress</small><div class="progress"><b></b></div></div>
+     <div class="dash-card"><span>Active project</span><strong style="font-size:17px">Campus Connect</strong><small>Team project · Example</small></div>
+    </div>
+    <div class="dash-card" style="margin-top:10px;min-height:auto"><span>Next engineering milestones</span>
+     <div class="task-line"><i class="task-check">✓</i><span>Define project requirements</span></div>
+     <div class="task-line"><i class="task-check">✓</i><span>Plan API structure</span></div>
+     <div class="task-line"><i class="task-check" style="background:#f3e8c9;color:#9a6b18">•</i><span>Implement and test authentication</span></div>
+    </div>
+   </div>
+   <div class="floating-note"><strong>Build with purpose.</strong>Turn practical work into evidence of what you can do.</div>
+  </div>
+ </div>
+</section>
+<div class="trust-strip"><div class="container trust-inner"><span class="trust-item">Personalized learning</span><span class="trust-item">Real engineering projects</span><span class="trust-item">Meaningful collaboration</span><span class="trust-item">Evidence of capability</span></div></div>
+
+<section class="section" id="problem">
+ <div class="container">
+  <div class="section-head"><span class="eyebrow">The gap we're addressing</span><h2>Knowing a concept is only the beginning.</h2><p>Students need more than disconnected lessons and certificates. They need a path to practise, build, collaborate, explain their decisions and show what they have learned.</p></div>
+  <div class="cards">
+   <article class="card"><div class="card-icon">◎</div><h3>Learning without direction</h3><p>It can be difficult to know what to learn next, which skills matter and how to connect concepts to practical work.</p></article>
+   <article class="card"><div class="card-icon">⌘</div><h3>Projects without structure</h3><p>Turning an idea into an achievable engineering project requires planning, milestones, feedback and consistent execution.</p></article>
+   <article class="card"><div class="card-icon">↗</div><h3>Skills without evidence</h3><p>A list of technologies does not always show what someone can build, explain or contribute independently.</p></article>
+  </div>
+ </div>
+</section>
+
+<section class="section alt" id="how-it-works">
+ <div class="container">
+  <div class="section-head center"><span class="eyebrow">One connected journey</span><h2>From learning to demonstrated ability.</h2><p>Each stage supports the next, helping students move from understanding concepts to applying them in real engineering work.</p></div>
+  <div class="journey">
+   <div class="journey-step"><b>01 / DISCOVER</b><h3>Know your starting point</h3><p>Explore interests, goals and current capabilities.</p></div>
+   <div class="journey-step"><b>02 / LEARN</b><h3>Build foundations</h3><p>Follow a purposeful learning path and practise.</p></div>
+   <div class="journey-step"><b>03 / BUILD</b><h3>Make real things</h3><p>Plan and develop practical engineering projects.</p></div>
+   <div class="journey-step"><b>04 / COLLABORATE</b><h3>Work together</h3><p>Share responsibility, review work and learn as a team.</p></div>
+   <div class="journey-step"><b>05 / PROVE</b><h3>Show the evidence</h3><p>Connect contributions, reviews and explanations.</p></div>
+   <div class="journey-step"><b>06 / GROW</b><h3>Move forward</h3><p>Present your work and prepare for opportunities.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="learn">
+ <div class="container feature-split">
+  <div><span class="eyebrow">01 · Learn — Learning Intelligence</span><h2>Learn what moves you forward.</h2><p class="lead">Learning should connect to your goals, current skills and the engineering work you want to do.</p>
+   <ul class="feature-list"><li><span class="tick">✓</span><span>Skill-gap understanding and personalized learning roadmaps.</span></li><li><span class="tick">✓</span><span>Concepts, curated learning resources and structured practice.</span></li><li><span class="tick">✓</span><span>Assessments and student explanations to deepen understanding.</span></li><li><span class="tick">✓</span><span>SISYA Chat as a learning companion in the planned experience.</span></li></ul>
+   <a class="btn btn-outline" href="#ai-agents">Meet the learning agent ↗</a>
+  </div>
+  <div class="proof-panel"><span class="status">Product vision</span><h3 style="margin-top:18px">A purposeful learning path</h3><div class="proof-row"><span class="proof-num">01</span><div><strong>Understand your goal</strong><small>Role, interest and starting point</small></div></div><div class="proof-row"><span class="proof-num">02</span><div><strong>Identify skill gaps</strong><small>Compare current and target capabilities</small></div></div><div class="proof-row"><span class="proof-num">03</span><div><strong>Follow a roadmap</strong><small>Topics, practice and milestones</small></div></div><div class="proof-row"><span class="proof-num">04</span><div><strong>Apply your knowledge</strong><small>Connect learning to a real project</small></div></div></div>
+ </div>
+</section>
+
+<section class="section alt" id="build">
+ <div class="container feature-split">
+  <div class="proof-panel"><span class="status">Product vision</span><h3 style="margin-top:18px">From idea to engineering delivery</h3><div class="proof-row"><span class="proof-num">01</span><div><strong>Project discovery</strong><small>Find a challenge or bring your own idea</small></div></div><div class="proof-row"><span class="proof-num">02</span><div><strong>Architecture and planning</strong><small>Break work into milestones and tasks</small></div></div><div class="proof-row"><span class="proof-num">03</span><div><strong>Build and iterate</strong><small>Use a workspace and engineering workflow</small></div></div><div class="proof-row"><span class="proof-num">04</span><div><strong>Review and improve</strong><small>Test, debug and refine the result</small></div></div></div>
+  <div><span class="eyebrow">02 · Build — Engineering Workspace</span><h2>Turn ideas into working projects.</h2><p class="lead">Move beyond tutorial-only projects. Learn to plan, implement, test and improve software with a structured engineering workflow.</p><ul class="feature-list"><li><span class="tick">✓</span><span>Project discovery and bring-your-own-idea workflows.</span></li><li><span class="tick">✓</span><span>AI-assisted project architecture and task breakdown.</span></li><li><span class="tick">✓</span><span>Milestones, acceptance criteria and progress tracking.</span></li><li><span class="tick">✓</span><span>GitHub-connected engineering workflows as integrations mature.</span></li></ul><a class="btn btn-outline" href="#demo">Explore a simulated project ↗</a></div>
+ </div>
+</section>
+
+<section class="section" id="collaborate">
+ <div class="container">
+  <div class="section-head"><span class="eyebrow">03 · Collaborate</span><h2>Engineering is better when we build together.</h2><p>Find people who share your curiosity. Discover project opportunities, form teams, learn from mentors and contribute to meaningful work.</p></div>
+  <div class="cards">
+   <article class="card"><div class="card-icon">♧</div><h3>Find collaborators</h3><p>Connect with students who bring complementary skills, interests and perspectives.</p><span class="tag">Student community</span></article>
+   <article class="card"><div class="card-icon">▦</div><h3>Discover projects</h3><p>Explore project ideas, understand contribution needs and express interest in joining.</p><span class="tag">Project discovery</span></article>
+   <article class="card"><div class="card-icon">✳</div><h3>Learn with others</h3><p>Share feedback, work with mentors and participate in open-source contribution workflows.</p><span class="tag">Shared growth</span></article>
+  </div>
+  <div style="margin-top:25px"><a class="btn btn-primary" href="#community">Explore the Engineering Network ↗</a></div>
+ </div>
+</section>
+
+<section class="section alt" id="prove">
+ <div class="container feature-split">
+  <div><span class="eyebrow">04 · Prove</span><h2>Make your work speak for itself.</h2><p class="lead">A credible picture of engineering ability should be supported by evidence—not just claims.</p><ul class="feature-list"><li><span class="tick">✓</span><span>Connect project tasks to individual contributions.</span></li><li><span class="tick">✓</span><span>Use Git commits, merged pull requests and test results where available.</span></li><li><span class="tick">✓</span><span>Include code reviews, peer feedback and technical explanations.</span></li><li><span class="tick">✓</span><span>Keep self-reported skills distinct from independently supported evidence.</span></li></ul><div class="notice">Evidence integrations and evaluation workflows are part of the product direction. This website does not claim that verification is currently live.</div></div>
+  <div class="proof-panel"><span class="status">Illustrative evidence chain</span><h3 style="margin-top:18px">A contribution, with context</h3>
+   <div class="proof-row"><span class="proof-num">1</span><div><strong>Project task</strong><small>Build the authentication endpoint</small></div></div><div class="proof-row"><span class="proof-num">2</span><div><strong>Code contribution</strong><small>Commit and pull request references</small></div></div><div class="proof-row"><span class="proof-num">3</span><div><strong>Quality evidence</strong><small>Tests, CI and code review</small></div></div><div class="proof-row"><span class="proof-num">4</span><div><strong>Technical explanation</strong><small>Student explains decisions and trade-offs</small></div></div><div class="proof-row"><span class="proof-num">5</span><div><strong>Skill evidence</strong><small>Supported, contextual capability record</small></div></div>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="career">
+ <div class="container">
+  <div class="section-head"><span class="eyebrow">05 · Career Intelligence</span><h2>Prepare for opportunities with more than a résumé.</h2><p>Connect your learning journey and project evidence to practical career preparation.</p></div>
+  <div class="cards">
+   <article class="card"><div class="card-icon">⌕</div><h3>Career direction</h3><p>Explore roles and understand the capabilities they commonly require.</p></article>
+   <article class="card"><div class="card-icon">▤</div><h3>Evidence-backed profile</h3><p>Present projects, contributions, explanations and demonstrated skills.</p></article>
+   <article class="card"><div class="card-icon">◉</div><h3>Interview preparation</h3><p>Practise technical questions, project discussions and interview scenarios.</p></article>
+  </div>
+ </div>
+</section>
+
+<section class="section alt" id="ai-agents">
+ <div class="container">
+  <div class="section-head"><span class="eyebrow">Specialized AI assistance</span><h2>Three agents. Different jobs. One student journey.</h2><p>Each agent has a distinct role and context, supporting students without replacing their own understanding or responsibility.</p></div>
+  <div class="cards">
+   <article class="card agent-card"><div class="card-icon">✧</div><span class="status">Concept</span><h3>SISYA Chat</h3><p>A learning companion for concepts, questions, practice and clearer understanding.</p></article>
+   <article class="card agent-card"><div class="card-icon">⌘</div><span class="status">Concept</span><h3>Abhyāsa Agent</h3><p>An engineering assistant for project planning, implementation support, debugging and review.</p></article>
+   <article class="card agent-card"><div class="card-icon">↗</div><span class="status">Concept</span><h3>Career Agent</h3><p>A career companion for preparation, profile improvement and opportunity guidance.</p></article>
+  </div>
+  <p class="microcopy" style="margin-top:18px">The agents are presented as product concepts. The interactive demo uses simulated responses and does not connect to live AI services.</p>
+ </div>
+</section>
+
+<section class="section" id="demo">
+ <div class="container">
+  <div class="section-head"><span class="eyebrow">Explore the experience</span><h2>Take a guided look inside.</h2><p>This interactive preview illustrates how a student workspace could bring learning, projects, proof and career preparation together. All sample data and interactions are simulated.</p></div>
+  <div class="demo-shell">
+   <div class="demo-top"><strong>SISYA ABHYASA · Student preview</strong><span class="status demo">Simulated demo</span></div>
+   <div class="demo-body">
+    <aside class="demo-side"><button class="demo-tab active" data-demo="overview">◫ &nbsp; Overview</button><button class="demo-tab" data-demo="learn">◎ &nbsp; Learn</button><button class="demo-tab" data-demo="build">⌘ &nbsp; Build</button><button class="demo-tab" data-demo="prove">✓ &nbsp; Prove</button><button class="demo-tab" data-demo="career">↗ &nbsp; Career</button></aside>
+    <div class="demo-content" id="demoContent"><span class="eyebrow">STUDENT OVERVIEW</span><h3 style="margin-top:12px">Good morning, learner.</h3><p style="color:#82958b;font-size:13px">A sample view of your learning and engineering journey.</p><div class="demo-metric-grid"><div class="metric"><small>Learning path</small><strong>68%</strong></div><div class="metric"><small>Active projects</small><strong>02</strong></div><div class="metric"><small>Evidence items</small><strong>07</strong></div></div><div class="panel"><strong style="font-size:13px">Suggested next step</strong><p style="margin:8px 0 0">Complete the API testing milestone in your sample Campus Connect project.</p></div></div>
+   </div>
+  </div>
+  <div class="notice">This is a front-end demonstration only. It does not create student accounts, save progress to a server, verify GitHub contributions or provide live AI functionality.</div>
+ </div>
+</section>
+
+
+<section class="section alt" id="student-workspace">
+ <div class="container">
+  <div class="section-head"><span class="eyebrow">Interactive product experience</span><h2>One student journey. Every part connected.</h2>
+  <p>Explore the SISYA ABHYASA student workspace through one fictional student, Aarav Sharma, targeting a Full Stack Developer role. All profiles, projects, GitHub activity, assessments and AI outputs are simulated.</p></div>
+  <div class="full-workspace">
+   <div class="full-workspace-head"><div><b>SISYA ABHYASA · STUDENT WORKSPACE</b><small>Aarav Sharma · Full Stack Developer · Sample student</small></div><span class="demo-flag">SIMULATED DATA</span></div>
+   <div class="full-workspace-body">
+    <aside class="full-workspace-nav">
+     <button class="full-tab active" data-panel="dashboard">▦ Dashboard</button>
+     <button class="full-tab" data-panel="learn">◎ Learn</button>
+     <button class="full-tab" data-panel="build">⌘ Build</button>
+     <button class="full-tab" data-panel="collaborate">♧ Collaborate</button>
+     <button class="full-tab" data-panel="prove">✓ Prove</button>
+     <button class="full-tab" data-panel="career">↗ Career Intelligence</button>
+     <button class="full-tab" data-panel="profile">◉ My Profile</button>
+     <div class="full-nav-label">AI COMPANIONS</div>
+     <button class="full-tab" data-panel="sisya">✧ SISYA Chat</button>
+     <button class="full-tab" data-panel="abhyasa">⌘ Abhyāsa Agent</button>
+    </aside>
+    <div class="full-workspace-content" id="fullWorkspaceContent"></div>
+   </div>
+  </div>
+  <div class="notice">This is a front-end demonstration. It does not create accounts, persist progress, connect to GitHub, run assessments, verify evidence or call live AI services.</div>
+ </div>
+</section>
+
+<section class="section alt" id="colleges">
+ <div class="container two-col">
+  <div><span class="eyebrow">For colleges and educators</span><h2>Support learning that leads to practical capability.</h2><p class="lead">The long-term vision includes ways for institutions and educators to support student learning, projects, collaboration and evidence-based development.</p><a class="btn btn-outline" href="#contact">Discuss institutional interest ↗</a></div>
+  <div class="panel"><h3>Potential institutional capabilities</h3><ul class="feature-list"><li><span class="tick">✓</span><span>Student development and learning progress.</span></li><li><span class="tick">✓</span><span>Project participation and team activity.</span></li><li><span class="tick">✓</span><span>Mentor and faculty feedback workflows.</span></li><li><span class="tick">✓</span><span>Evidence-based capability summaries.</span></li></ul><span class="status planned">Future direction · Not currently offered</span></div>
+ </div>
+</section>
+
+<section class="section" id="recruiters">
+ <div class="container two-col">
+  <div class="panel"><h3>Look beyond the résumé</h3><p>Explore a future talent experience grounded in project work, individual contributions, technical explanations and evidence.</p><span class="status planned">Future direction · Not currently offered</span></div>
+  <div><span class="eyebrow">For recruiters and teams</span><h2>Discover what people can actually do.</h2><p class="lead">The long-term direction is to help opportunity providers understand demonstrated capabilities and connect with candidates—with consent and transparent evidence.</p><a class="btn btn-outline" href="#contact">Share recruiter feedback ↗</a></div>
+ </div>
+</section>
+
+<section class="section alt" id="community">
+ <div class="container">
+  <div class="section-head"><span class="eyebrow">Engineering Network</span><h2>Meet people. Find projects. Build together.</h2><p>The community experience is being shaped as a place for student builders, collaborators, mentors and early contributors.</p></div>
+  <div class="cards">
+   <article class="card"><div class="card-icon">♧</div><h3>Student builders</h3><p>Find peers who want to learn by making practical projects.</p></article>
+   <article class="card"><div class="card-icon">⌘</div><h3>Project contributors</h3><p>Share ideas, find collaborators and contribute to meaningful work.</p></article>
+   <article class="card"><div class="card-icon">✳</div><h3>Mentors and supporters</h3><p>Offer guidance, feedback or practical support to emerging builders.</p></article>
+  </div>
+  <div style="margin-top:25px"><a class="btn btn-primary" href="#contact">Join the early community ↗</a></div>
+ </div>
+</section>
+
+<section class="section" id="roadmap">
+ <div class="container">
+  <div class="section-head"><span class="eyebrow">Building transparently</span><h2>A vision developed in deliberate stages.</h2><p>We will communicate progress honestly. The roadmap below describes the intended sequence, not a promise that every capability is already available.</p></div>
+  <div class="roadmap">
+   <article class="card"><span class="status">Current focus</span><h3 style="margin-top:15px">Foundation and validation</h3><p>Clarify the product, gather student feedback, shape the community and establish the core experience.</p></article>
+   <article class="card"><span class="status demo">In development</span><h3 style="margin-top:15px">Core student experience</h3><p>Build and integrate learning, project workflows, student identity and the first practical product capabilities.</p></article>
+   <article class="card"><span class="status planned">Planned</span><h3 style="margin-top:15px">Evidence and opportunity network</h3><p>Expand collaboration, evidence, career intelligence and institutional or recruiter experiences.</p></article>
+  </div>
+ </div>
+</section>
+
+<section class="section alt" id="about">
+ <div class="container feature-split">
+  <div><span class="eyebrow">About SISYA ABHYASA</span><h2>Education should prepare you to do the work.</h2><p class="lead">SISYA ABHYASA is being developed around a simple belief: students grow when learning connects to practice, projects, collaboration and the ability to explain and demonstrate their work.</p><p style="color:light-dark(#687e72,#a9bdb2);line-height:1.8;font-size:14px">Our aim is to create a connected environment where students can develop engineering capabilities over time—not just collect disconnected course completions.</p></div>
+  <div class="panel"><span class="status">Our principles</span><div class="proof-row"><span class="proof-num">01</span><div><strong>Learning with purpose</strong><small>Understand why a skill matters</small></div></div><div class="proof-row"><span class="proof-num">02</span><div><strong>Building through practice</strong><small>Apply knowledge to real problems</small></div></div><div class="proof-row"><span class="proof-num">03</span><div><strong>Evidence over empty claims</strong><small>Make contributions explainable</small></div></div><div class="proof-row"><span class="proof-num">04</span><div><strong>Growth through community</strong><small>Learn with and from others</small></div></div></div>
+ </div>
+</section>
+
+<section class="section dark" id="contact">
+ <div class="container">
+  <div class="cta-band">
+   <div><span class="eyebrow" style="color:#8ce0bd">Help shape what comes next</span><h2 style="margin-top:14px">Be part of the early journey.</h2><p>Share your perspective, suggest a feature, express interest in contributing or register for early updates. This preview form demonstrates the intended flow; it does not submit data to a live service.</p></div>
+   <a class="btn" style="background:#fff;color:#064E40;white-space:nowrap" href="#early-access">Get involved ↗</a>
+  </div>
+  <div id="early-access" style="padding-top:55px;max-width:760px">
+   <div class="section-head"><h2 style="font-size:34px">Stay connected.</h2><p style="color:#c0d9ce">Choose how you'd like to participate. This prototype currently shows a local confirmation only.</p></div>
+   <form id="interestForm">
+    <div class="form-grid">
+     <div class="field"><label for="fullName">Your name</label><input id="fullName" name="name" required placeholder="Enter your name"></div>
+     <div class="field"><label for="email">Email address</label><input id="email" name="email" type="email" required placeholder="you@example.com"></div>
+     <div class="field"><label for="role">I am a</label><select id="role" name="role" required><option value="">Choose one</option><option>Student</option><option>Developer</option><option>Designer</option><option>Mentor</option><option>Educator / Faculty</option><option>Recruiter / Organization</option><option>Other</option></select></div>
+     <div class="field"><label for="interest">I'm interested in</label><select id="interest" name="interest" required><option value="">Choose one</option><option>Early access</option><option>Sharing feedback</option><option>Suggesting a feature</option><option>Contributing to the project</option><option>Mentoring or supporting</option><option>Institutional / recruiter discussion</option></select></div>
+     <div class="field full"><label for="message">Anything you'd like us to know? (optional)</label><textarea id="message" name="message" placeholder="Tell us what you hope to build, learn or contribute..."></textarea></div>
+    </div>
+    <label style="display:flex;gap:9px;align-items:flex-start;font-size:11px;color:#c0d9ce;line-height:1.5;margin:12px 0 18px"><input type="checkbox" required style="margin-top:2px"> I understand this is a prototype form and no information will be sent or stored.</label>
+    <button class="btn" style="background:#fff;color:#064E40" type="submit">Preview my submission ↗</button>
+    <div class="success-msg" id="formSuccess" role="status">Thanks for your interest. This is a local demo confirmation only; your details have not been transmitted or saved.</div>
+   </form>
+  </div>
+ </div>
+</section>
+</main>
+<footer class="footer">
+ <div class="container">
+  <div class="footer-grid">
+   <div><a class="brand" href="#home"><span class="brand-mark">SA</span><span>SISYA ABHYASA<small>LEARN · BUILD · PROVE · GROW</small></span></a><p>Connecting learning, engineering practice, collaboration and demonstrable capability.</p></div>
+   <div><h4>Explore</h4><a href="#how-it-works">How it works</a><a href="#student-workspace">Student workspace</a><a href="#learn">Learn</a><a href="#build">Build</a><a href="#collaborate">Collaborate</a><a href="#prove">Prove</a></div>
+   <div><h4>Platform</h4><a href="#career">Career Intelligence</a><a href="#ai-agents">AI agents</a><a href="#demo">Interactive demo</a><a href="#community">Engineering Network</a><a href="#roadmap">Roadmap</a></div>
+   <div><h4>Connect</h4><a href="#about">About us</a><a href="#colleges">For colleges</a><a href="#recruiters">For recruiters</a><a href="#contact">Get involved</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 SISYA ABHYASA. Product concept and development in progress.</span><span>Built around learning, practice and evidence.</span></div>
+ </div>
+</footer>
+<div class="toast" id="toast" role="status"></div>
+</div>
+<script>
+const menuToggle = document.getElementById('menuToggle');
+const mobileNav = document.getElementById('mobileNav');
+menuToggle.addEventListener('click', () => mobileNav.classList.toggle('open'));
+mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileNav.classList.remove('open')));
+const demoContent = document.getElementById('demoContent');
+const demoViews = {
+ overview: `<span class="eyebrow">STUDENT OVERVIEW</span><h3 style="margin-top:12px">Good morning, learner.</h3><p style="color:#82958b;font-size:13px">A sample view of your learning and engineering journey.</p><div class="demo-metric-grid"><div class="metric"><small>Learning path</small><strong>68%</strong></div><div class="metric"><small>Active projects</small><strong>02</strong></div><div class="metric"><small>Evidence items</small><strong>07</strong></div></div><div class="panel"><strong style="font-size:13px">Suggested next step</strong><p style="margin:8px 0 0">Complete the API testing milestone in your sample Campus Connect project.</p></div>`,
+ learn: `<span class="eyebrow">LEARN · SIMULATED</span><h3 style="margin-top:12px">Your learning roadmap</h3><p style="color:#82958b;font-size:13px">A sample pathway for a student exploring full-stack development.</p><div class="proof-row"><span class="proof-num">✓</span><div><strong>HTML and CSS foundations</strong><small>Example milestone · Completed</small></div></div><div class="proof-row"><span class="proof-num">2</span><div><strong>JavaScript fundamentals</strong><small>Example milestone · In progress</small></div></div><div class="proof-row"><span class="proof-num">3</span><div><strong>APIs and backend basics</strong><small>Example milestone · Next</small></div></div>`,
+ build: `<span class="eyebrow">BUILD · SIMULATED</span><h3 style="margin-top:12px">Campus Connect</h3><p style="color:#82958b;font-size:13px">An illustrative team project workspace.</p><div class="demo-metric-grid"><div class="metric"><small>Milestones</small><strong>3 / 5</strong></div><div class="metric"><small>Tasks</small><strong>12</strong></div><div class="metric"><small>Team</small><strong>04</strong></div></div><div class="panel"><strong style="font-size:13px">Next task</strong><p style="margin:8px 0 0">Write API tests and document expected responses.</p></div>`,
+ prove: `<span class="eyebrow">PROVE · SIMULATED</span><h3 style="margin-top:12px">Evidence overview</h3><p style="color:#82958b;font-size:13px">Example evidence categories—not verified student records.</p><div class="proof-row"><span class="proof-num">01</span><div><strong>Project contribution</strong><small>Illustrative task-to-commit reference</small></div></div><div class="proof-row"><span class="proof-num">02</span><div><strong>Review and tests</strong><small>Illustrative quality evidence</small></div></div><div class="proof-row"><span class="proof-num">03</span><div><strong>Technical explanation</strong><small>Illustrative student reflection</small></div></div>`,
+ career: `<span class="eyebrow">CAREER · SIMULATED</span><h3 style="margin-top:12px">Career readiness snapshot</h3><p style="color:#82958b;font-size:13px">An example of how preparation areas might be organized.</p><div class="demo-metric-grid"><div class="metric"><small>Project story</small><strong>Ready</strong></div><div class="metric"><small>DSA practice</small><strong>In progress</strong></div><div class="metric"><small>Mock interview</small><strong>Next</strong></div></div><div class="panel"><strong style="font-size:13px">Suggested action</strong><p style="margin:8px 0 0">Practise explaining one technical decision from your project.</p></div>`
+};
+document.querySelectorAll('.demo-tab').forEach(btn => btn.addEventListener('click', () => {
+ document.querySelectorAll('.demo-tab').forEach(b => b.classList.remove('active'));
+ btn.classList.add('active');
+ demoContent.innerHTML = demoViews[btn.dataset.demo];
+}));
+document.getElementById('interestForm').addEventListener('submit', e => {
+ e.preventDefault();
+ document.getElementById('formSuccess').style.display = 'block';
+ e.target.reset();
+});
+document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', () => {
+ const target = a.getAttribute('href');
+ if (target && target.length > 1) setTimeout(() => { history.replaceState(null, '', target); }, 0);
+}));
+
+const fullViews = {
+dashboard:`<span class="eyebrow">YOUR DEVELOPMENT JOURNEY</span><h3>Welcome back, Aarav.</h3><p class="f-muted">Target role: Full Stack Developer · Sample student journey.</p>
+<div class="f-grid"><div class="f-tile"><small>Overall learning progress</small><strong>68%</strong></div><div class="f-tile"><small>Current skill level</small><strong>Developing</strong></div><div class="f-tile"><small>Active projects</small><strong>2</strong></div><div class="f-tile"><small>Pending tasks</small><strong>4</strong></div><div class="f-tile"><small>Skills demonstrated</small><strong>5</strong></div><div class="f-tile"><small>Upcoming assessments</small><strong>2</strong></div></div>
+<div class="f-box"><strong>Active learning roadmap</strong><div class="f-row"><span class="f-chip">IN PROGRESS</span><div><b>Backend authentication</b><small>JWT, sessions, authorization · 3 of 5 lessons complete</small></div></div><div class="f-row"><span class="f-chip warn">NEXT</span><div><b>API testing and reliability</b><small>Linked to the current Campus Recruitment Platform task</small></div></div></div>
+<div class="f-box"><strong>What are you building?</strong><div class="f-row"><span class="f-chip">ACTIVE</span><div><b>Campus Recruitment Platform</b><small>Authentication module · 3 of 5 milestones · sample project</small></div></div><div class="f-row"><span class="f-chip">ACTIVE</span><div><b>Student Resource Hub</b><small>Resource discovery experience · sample project</small></div></div></div>
+<div class="f-box"><strong>Recent GitHub activity · Simulated</strong><div class="f-row"><span class="f-chip">PR</span><div><b>feat: add login validation</b><small>sample-repo · 2 days ago · fictional event, not connected to GitHub</small></div></div><div class="f-row"><span class="f-chip">COMMIT</span><div><b>test: add auth service tests</b><small>sample-repo · 4 days ago · fictional event</small></div></div></div>
+<div class="f-box"><strong>Recommended next actions</strong><div class="f-row"><span class="f-chip warn">DO NEXT</span><div><b>Study JWT refresh-token flow</b><small>Suggested because the active project task involves authentication.</small></div><button class="f-btn" onclick="openFullPanel('learn')">Open Learn</button></div><div class="f-row"><span class="f-chip">PROJECT</span><div><b>Complete authentication middleware tests</b><small>Continue the active project task.</small></div><button class="f-btn" onclick="openFullPanel('build')">Open Build</button></div></div>
+<div class="f-box"><strong>Personalized suggestion · Simulated AI insight</strong><p class="f-muted">Aarav, your sample project task suggests a knowledge gap in JWT refresh-token handling. Review the concept, practise the token lifecycle, then return to your task. This is illustrative, not a live AI analysis.</p><span class="f-chip purple">LEARNING INTELLIGENCE PREVIEW</span></div>`,
+learn:`<span class="eyebrow">LEARNING INTELLIGENCE</span><h3>Learn with a clear path.</h3><p class="f-muted">The main Learning page structure is preserved: Concept → Roadmap → Course → Resource → Student Explanations.</p>
+<div class="f-box"><strong>Learning components</strong><div class="f-row"><span class="f-chip">01 · CONCEPT</span><div><b>JWT authentication and token lifecycle</b><small>Access tokens, refresh tokens, claims, expiry and validation.</small></div></div><div class="f-row"><span class="f-chip">02 · ROADMAP</span><div><b>Backend authentication roadmap</b><small>Foundations → token lifecycle → authorization → secure implementation → testing.</small></div></div><div class="f-row"><span class="f-chip">03 · COURSE</span><div><b>Practical API Authentication</b><small>Sample course · 5 modules · 3 completed.</small></div></div><div class="f-row"><span class="f-chip">04 · RESOURCE</span><div><b>JWT documentation and API security guide</b><small>Illustrative videos, documentation and tutorials.</small></div></div><div class="f-row"><span class="f-chip">05 · EXPLAIN</span><div><b>Explain refresh-token rotation in your own words</b><small>Student explanation prompt · sample activity.</small></div></div></div>
+<div class="f-grid"><div class="f-tile"><small>Concept mastery</small><strong>Intermediate</strong></div><div class="f-tile"><small>Learning history</small><strong>18 items</strong></div><div class="f-tile"><small>Skill gap analysis</small><strong>Token rotation</strong></div></div>
+<div class="f-box"><strong>Practice, assessments and tracks</strong><div class="f-row"><div><b>JWT claims quiz</b><small>Upcoming · 8 questions · sample assessment</small></div><span class="f-chip warn">UPCOMING</span></div><div class="f-row"><div><b>Authentication API exercise</b><small>Practice linked to the active project</small></div><span class="f-chip">PRACTICE</span></div><p class="f-muted">Career track: Full Stack Developer · Skill track: Backend Authentication · Engineering knowledge assessment: API security foundations.</p><button class="f-btn primary" onclick="openFullPanel('sisya')">Ask SISYA Chat</button></div>`,
+build:`<span class="eyebrow">ENGINEERING WORKSPACE</span><h3>Build the Campus Recruitment Platform.</h3><p class="f-muted">Project discovery, bring your idea, AI idea finder, architecture, milestones, tasks, Kanban, repository and engineering assistant.</p>
+<div class="f-box"><strong>Project discovery · My projects</strong><div class="f-row"><div><b>Campus Recruitment Platform</b><small>Student, placement team and opportunity workflows. Skills: React, FastAPI, PostgreSQL, authentication and testing.</small></div><span class="f-chip">ACTIVE</span></div><div class="f-row"><div><b>Student Resource Hub</b><small>Resource discovery with search, APIs and database design.</small></div><span class="f-chip">ACTIVE</span></div><button class="f-btn" onclick="showFullToast('Bring Your Idea / AI Idea Finder is a simulated interaction.')">Bring Your Idea · AI Idea Finder</button></div>
+<div class="f-box"><strong>AI Project Architect · Simulated</strong><p class="f-muted">Example architecture: Next.js interface → FastAPI service layer → PostgreSQL → GitHub integration. Validate requirements, permissions and acceptance criteria before implementation.</p><span class="f-chip purple">ILLUSTRATIVE OUTPUT</span></div>
+<div class="f-box"><strong>Milestones and task progress</strong><div class="f-row"><span class="f-chip">DONE</span><div><b>1. Requirements and user flows</b><small>Sample milestone</small></div></div><div class="f-row"><span class="f-chip">DONE</span><div><b>2. Database and API design</b><small>Sample milestone</small></div></div><div class="f-row"><span class="f-chip warn">ACTIVE</span><div><b>3. Authentication and authorization</b><small>Current milestone · 2 of 4 tasks complete</small></div></div><div class="f-row"><span class="f-chip">NEXT</span><div><b>4. Testing and deployment</b><small>Not started</small></div></div></div>
+<div class="f-box"><strong>Kanban board</strong><div class="f-kanban"><div class="f-kanban-col"><b>TO DO</b><div class="f-task">Document refresh-token expiry</div></div><div class="f-kanban-col"><b>IN PROGRESS</b><div class="f-task">Implement auth middleware</div></div><div class="f-kanban-col"><b>REVIEW</b><div class="f-task">Login validation tests</div></div><div class="f-kanban-col"><b>DONE</b><div class="f-task">Define auth API contract</div></div></div></div>
+<div class="f-box"><strong>Selected task · Implement authentication middleware</strong><p class="f-muted">Acceptance criteria: validate token signature and expiry, enforce permissions, return safe errors and add automated tests.</p><button class="f-btn primary" onclick="showFullToast('Task started in this simulated demo.')">Start task</button> <button class="f-btn" onclick="openFullPanel('learn')">Linked learning</button> <button class="f-btn" onclick="openFullPanel('abhyasa')">Ask Abhyāsa Agent</button> <button class="f-btn" onclick="showFullToast('No live repository or pull request integration is connected.')">Repository / PR</button></div>`,
+collaborate:`<span class="eyebrow">COLLABORATION INTELLIGENCE</span><h3>Build with the right people.</h3><p class="f-muted">Focused engineering network preview, not a public social feed. All profiles and teams are fictional sample data.</p>
+<div class="f-box"><strong>Discover developers · Sample profiles</strong><div class="f-row"><div class="f-avatar">RK</div><div style="flex:1"><b>Riya Kumar · Frontend</b><small>React, accessibility, UI systems</small></div><button class="f-btn" onclick="showFullToast('Connection request simulated.')">Connect</button></div><div class="f-row"><div class="f-avatar">AM</div><div style="flex:1"><b>Arjun Mehta · Backend</b><small>Python, FastAPI, PostgreSQL</small></div><button class="f-btn" onclick="showFullToast('Connection request simulated.')">Connect</button></div><div class="f-row"><div class="f-avatar">NS</div><div style="flex:1"><b>Neha Singh · UI/UX</b><small>Figma, research, design systems</small></div><button class="f-btn" onclick="showFullToast('Connection request simulated.')">Connect</button></div></div>
+<div class="f-box"><strong>Teams, projects and mentor discovery</strong><div class="f-row"><div><b>Campus Recruitment Platform team</b><small>4 members · task ownership and shared workspace</small></div><button class="f-btn" onclick="showFullToast('Team workspace preview opened.')">View</button></div><div class="f-row"><div><b>Open-source accessibility toolkit</b><small>Seeking frontend contributors and code reviewers</small></div><button class="f-btn" onclick="showFullToast('Join request simulated.')">Join</button></div><div class="f-row"><div><b>Mentor discovery and code review requests</b><small>Potential mentor matching, project discussions and contribution history.</small></div><span class="f-chip purple">PREVIEW</span></div></div>`,
+prove:`<span class="eyebrow">EVALUATION & EVIDENCE INTELLIGENCE</span><h3>Show what you can demonstrate.</h3><p class="f-muted">Distinguish self-declared, practised, demonstrated and repeatedly demonstrated skills. These are illustrative labels, not verified records.</p>
+<div class="f-box"><strong>Skill evidence status</strong><div class="f-row"><span class="f-chip">SELF-DECLARED</span><div><b>React</b><small>Student claim; not independently validated.</small></div></div><div class="f-row"><span class="f-chip warn">PRACTISED</span><div><b>SQL joins</b><small>Sample practice activity.</small></div></div><div class="f-row"><span class="f-chip purple">DEMONSTRATED · SAMPLE</span><div><b>REST API development</b><small>Illustrative task, code review and explanation.</small></div></div><div class="f-row"><span class="f-chip">REPEATEDLY DEMONSTRATED · SAMPLE</span><div><b>Git collaboration</b><small>Illustrative evidence across multiple tasks.</small></div></div></div>
+<div class="f-box"><strong>Evidence workflow</strong><p class="f-muted">Project → Task → Commit → Pull Request → CI/Test → Review → Micro-Viva → Skill Evidence</p><div class="f-row"><div><b>GitHub commits, PR reviews and repositories</b><small>External connector data is not connected.</small></div><span class="f-chip warn">NOT CONNECTED</span></div><div class="f-row"><div><b>CI/Test results and peer/mentor reviews</b><small>Sample workflow placeholders.</small></div><span class="f-chip">ILLUSTRATIVE</span></div><div class="f-row"><div><b>Micro-Viva</b><small>Student explains implementation, decisions and trade-offs.</small></div><button class="f-btn" onclick="showFullToast('Micro-Viva prompt only; no score or verification is recorded.')">Try prompt</button></div><div class="f-row"><div><b>Verification history and shareable Proof Profile</b><small>Evidence audit trail and student-controlled visibility.</small></div><button class="f-btn" onclick="openFullPanel('profile')">View profile</button></div></div>
+<div class="notice">Simulated AI output is never presented as genuine external verification. Real evidence requires authenticated integrations, review policies and student consent.</div>`,
+career:`<span class="eyebrow">CAREER INTELLIGENCE</span><h3>Connect demonstrated skills to career goals.</h3><p class="f-muted">Target role: Full Stack Developer · Fictional readiness example.</p>
+<div class="f-grid"><div class="f-tile"><small>Role readiness</small><strong>Building</strong></div><div class="f-tile"><small>Resume evidence</small><strong>5 items</strong></div><div class="f-tile"><small>Interview preparation</small><strong>In progress</strong></div></div>
+<div class="f-box"><strong>Career roadmap</strong><div class="f-row"><div><b>Strengthen backend fundamentals</b><small>Authentication, APIs, database design and testing.</small></div></div><div class="f-row"><div><b>Build interview fluency</b><small>DSA, code comprehension and project explanation.</small></div></div><div class="f-row"><div><b>Present evidence clearly</b><small>Resume stories tied to individual project contributions.</small></div></div></div>
+<div class="f-box"><strong>Career tools · Simulated</strong><div class="f-row"><div><b>AI Resume Builder and Resume Analysis</b><small>Evidence-based bullets and skill-gap identification.</small></div><button class="f-btn" onclick="showFullToast('Resume builder is simulated.')">Explore</button></div><div class="f-row"><div><b>Interview Studio and DSA Preparation</b><small>Practice technical interviews and coding problems.</small></div><button class="f-btn" onclick="showFullToast('Interview practice is simulated.')">Practice</button></div><div class="f-row"><div><b>Code Comprehension and System Design</b><small>Understand existing code and architecture decisions.</small></div><span class="f-chip">PREVIEW</span></div><div class="f-row"><div><b>Opportunity Discovery</b><small>Future internship and job matching; company projects and recruiter tools later.</small></div><span class="f-chip purple">PLANNED</span></div></div>`,
+profile:`<span class="eyebrow">LIVING ENGINEERING PORTFOLIO</span><h3>My Profile</h3><p class="f-muted">Student-controlled portfolio. Public visibility is a choice, not a default.</p>
+<div class="f-box"><div style="display:flex;gap:12px;align-items:center"><div class="f-avatar">AS</div><div><b>Aarav Sharma</b><div class="f-muted">Aspiring Full Stack Developer · Sample profile</div><span class="f-chip">DEMO PROFILE</span></div></div></div>
+<div class="f-grid"><div class="f-tile"><small>Education</small><strong style="font-size:14px">B.Tech · CSE</strong></div><div class="f-tile"><small>Skills listed</small><strong>8</strong></div><div class="f-tile"><small>Projects</small><strong>2</strong></div></div>
+<div class="f-box"><strong>Portfolio contents</strong><div class="f-row"><div><b>Student information and education</b><small>Basic profile details and academic background.</small></div></div><div class="f-row"><div><b>Skills and learning history</b><small>Concepts, courses, practice and assessments.</small></div></div><div class="f-row"><div><b>Projects, GitHub contributions and team contributions</b><small>Individual responsibilities and linked evidence.</small></div></div><div class="f-row"><div><b>Verified achievements, certifications and Micro-Viva results</b><small>Only label evidence as verified when a real verification process supports it.</small></div></div><div class="f-row"><div><b>Resume and Public Proof Profile settings</b><small>Student controls which fields are shared publicly.</small></div><button class="f-btn" onclick="showFullToast('Visibility setting is a non-persistent demo control.')">Visibility</button></div></div>`,
+sisya:`<span class="eyebrow">LEARNING INTELLIGENCE · SISYA CHAT</span><h3>Understand the concept, not just the answer.</h3><p class="f-muted">Sample question from Aarav's current learning gap.</p><div class="f-box"><span class="f-chip">AARAV · SAMPLE QUESTION</span><p style="font-size:13px;margin:10px 0">I understand access tokens, but why do we need refresh tokens?</p><div style="background:light-dark(#edf4ec,#20372d);padding:14px;border-radius:12px"><span class="f-chip purple">SIMULATED SISYA CHAT RESPONSE</span><p class="f-muted" style="margin:9px 0 0">Access tokens are short-lived and accompany API requests. Refresh tokens can obtain a new access token without requiring another sign-in. They are more sensitive, so protect them, rotate them where appropriate and support revocation. In your project, trace the lifecycle and test expiry and invalidation.</p></div></div><button class="f-btn primary" onclick="openFullPanel('learn')">Continue linked lesson</button>`,
+abhyasa:`<span class="eyebrow">ENGINEERING INTELLIGENCE · ABHYĀSA AGENT</span><h3>Move from a task to a sound implementation.</h3><p class="f-muted">Sample project-aware assistance for the active authentication middleware task.</p><div class="f-box"><span class="f-chip">ACTIVE TASK</span><b style="display:block;margin-top:8px">Implement authentication middleware</b><p class="f-muted">Acceptance: validate signature and expiry, enforce permissions, return safe errors and add automated tests.</p><span class="f-chip purple">SIMULATED AGENT GUIDANCE</span><div class="f-row"><div><b>1. Confirm token verification requirements</b><small>Validate trusted algorithm, issuer, audience and expiry.</small></div></div><div class="f-row"><div><b>2. Separate authentication and authorization</b><small>Establish identity, then check route permissions.</small></div></div><div class="f-row"><div><b>3. Add negative-path tests</b><small>Missing, malformed, expired and invalid-signature tokens.</small></div></div><div class="f-row"><div><b>4. Explain your implementation</b><small>Defend trust boundaries and error handling decisions.</small></div></div></div><button class="f-btn primary" onclick="openFullPanel('build')">Return to project task</button>`
+};
+function openFullPanel(name){
+ document.querySelectorAll('.full-tab').forEach(b=>b.classList.toggle('active',b.dataset.panel===name));
+ document.getElementById('fullWorkspaceContent').innerHTML=fullViews[name]||fullViews.dashboard;
+}
+document.querySelectorAll('.full-tab').forEach(b=>b.addEventListener('click',()=>openFullPanel(b.dataset.panel)));
+openFullPanel('dashboard');
+function showFullToast(msg){
+ let t=document.getElementById('toast');
+ if(!t){t=document.createElement('div');t.id='toast';t.className='toast';document.body.appendChild(t);}
+ t.textContent=msg;t.classList.add('show');clearTimeout(window.__fullToastTimer);window.__fullToastTimer=setTimeout(()=>t.classList.remove('show'),2500);
+}
+
+/* Reveal sections as they enter the viewport. */
+const revealItems=document.querySelectorAll('.section-head,.cards .card,.journey-step,.feature-split,.proof-panel,.roadmap .card,.cta-band');
+revealItems.forEach(el=>el.classList.add('reveal'));
+if('IntersectionObserver' in window){
+ const ro=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');ro.unobserve(e.target);}}),{threshold:.12});
+ revealItems.forEach(el=>ro.observe(el));
+}
+/* Magnetic pointer response for calls to action. */
+document.querySelectorAll('.btn').forEach(btn=>{
+ btn.classList.add('magnetic');
+ btn.addEventListener('pointermove',e=>{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;const r=btn.getBoundingClientRect();btn.style.transform=`translate(${((e.clientX-r.left-r.width/2)/r.width)*5}px,${((e.clientY-r.top-r.height/2)/r.height)*4}px)`;});
+ btn.addEventListener('pointerleave',()=>btn.style.transform='');
+});
+/* Lightweight mouse-reactive particle field in the hero. */
+(()=>{
+ const c=document.getElementById('fluidCanvas');if(!c||!c.getContext||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+ const x=c.getContext('2d'),hero=c.parentElement;let w=0,h=0,ps=[],mx=-999,my=-999,raf=0;
+ function resize(){const r=hero.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,1.5);w=r.width;h=r.height;c.width=w*d;c.height=h*d;c.style.width=w+'px';c.style.height=h+'px';x.setTransform(d,0,0,d,0,0);ps=Array.from({length:window.innerWidth<650?26:58},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:1+Math.random()*2}));}
+ function frame(){x.clearRect(0,0,w,h);for(let i=0;i<ps.length;i++){let p=ps[i],dx=mx-p.x,dy=my-p.y,dist=Math.hypot(dx,dy);if(dist<140&&dist>0){p.vx+=dx/dist*.01;p.vy+=dy/dist*.01;}p.vx*=.993;p.vy*=.993;p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;x.beginPath();x.arc(p.x,p.y,p.r,0,Math.PI*2);x.fillStyle='rgba(8,127,110,.35)';x.fill();for(let j=i+1;j<ps.length;j++){let q=ps[j],dd=Math.hypot(p.x-q.x,p.y-q.y);if(dd<95){x.beginPath();x.moveTo(p.x,p.y);x.lineTo(q.x,q.y);x.strokeStyle='rgba(8,127,110,'+((1-dd/95)*.13)+')';x.stroke();}}}raf=requestAnimationFrame(frame);}
+ hero.addEventListener('pointermove',e=>{let r=c.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;},{passive:true});hero.addEventListener('pointerleave',()=>{mx=-999;my=-999;});
+ resize();frame();addEventListener('resize',()=>{cancelAnimationFrame(raf);resize();frame();});
+})();
+
+</script>
+</body>
+</html>
