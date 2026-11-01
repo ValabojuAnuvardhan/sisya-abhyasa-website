@@ -500,12 +500,25 @@ h3 { font-size:21px; letter-spacing:-.035em; margin-bottom:10px; }
 <section class="section dark" id="contact">
  <div class="container">
   <div class="cta-band">
-   <div><span class="eyebrow" style="color:#8ce0bd">Help shape what comes next</span><h2 style="margin-top:14px">Be part of the early journey.</h2><p>Share your perspective, suggest a feature, express interest in contributing or register for early updates. This preview form demonstrates the intended flow; it does not submit data to a live service.</p></div>
+   <div><span class="eyebrow" style="color:#8ce0bd">Help shape what comes next</span><h2 style="margin-top:14px">Be part of the early journey.</h2><p>Share your perspective, suggest a feature, express interest in contributing or register for early updates. Share your perspective, suggest a feature, express interest in contributing or register for early updates through our early-access form.</p></div>
    <a class="btn" style="background:#fff;color:#064E40;white-space:nowrap" href="#early-access">Get involved ↗</a>
   </div>
   <div id="early-access" style="padding-top:55px;max-width:760px">
-   <div class="section-head"><h2 style="font-size:34px">Stay connected.</h2><p style="color:#c0d9ce">Choose how you'd like to participate. This prototype currently shows a local confirmation only.</p></div>
-   <form id="interestForm">
+   <div class="section-head"><h2 style="font-size:34px">Stay connected.</h2><p style="color:#c0d9ce">Choose how you'd like to participate. Submit your details to register your interest in SISYA ABHYASA.</p></div>
+   <form
+      id="interestForm"
+      name="early-access"
+      method="POST"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+  >
+  <p hidden>
+    <label>
+      Don't fill this out:
+      <input name="bot-field" tabindex="-1" autocomplete="off">
+    </label>
+  </p>
+     
     <div class="form-grid">
      <div class="field"><label for="fullName">Your name</label><input id="fullName" name="name" required placeholder="Enter your name"></div>
      <div class="field"><label for="email">Email address</label><input id="email" name="email" type="email" required placeholder="you@example.com"></div>
@@ -513,9 +526,8 @@ h3 { font-size:21px; letter-spacing:-.035em; margin-bottom:10px; }
      <div class="field"><label for="interest">I'm interested in</label><select id="interest" name="interest" required><option value="">Choose one</option><option>Early access</option><option>Sharing feedback</option><option>Suggesting a feature</option><option>Contributing to the project</option><option>Mentoring or supporting</option><option>Institutional / recruiter discussion</option></select></div>
      <div class="field full"><label for="message">Anything you'd like us to know? (optional)</label><textarea id="message" name="message" placeholder="Tell us what you hope to build, learn or contribute..."></textarea></div>
     </div>
-    <label style="display:flex;gap:9px;align-items:flex-start;font-size:11px;color:#c0d9ce;line-height:1.5;margin:12px 0 18px"><input type="checkbox" required style="margin-top:2px"> I understand this is a prototype form and no information will be sent or stored.</label>
-    <button class="btn" style="background:#fff;color:#064E40" type="submit">Preview my submission ↗</button>
-    <div class="success-msg" id="formSuccess" role="status">Thanks for your interest. This is a local demo confirmation only; your details have not been transmitted or saved.</div>
+    <label style="display:flex;gap:9px;align-items:flex-start;font-size:11px;color:#c0d9ce;line-height:1.5;margin:12px 0 18px"><input type="checkbox" required style="margin-top:2px"> I agree to be contacted about my interest in SISYA ABHYASA.</label>
+    <button class="btn" style="background:#fff;color:#064E40" type="submit">Submit interest ↗</button>
    </form>
   </div>
  </div>
@@ -552,11 +564,6 @@ document.querySelectorAll('.demo-tab').forEach(btn => btn.addEventListener('clic
  btn.classList.add('active');
  demoContent.innerHTML = demoViews[btn.dataset.demo];
 }));
-document.getElementById('interestForm').addEventListener('submit', e => {
- e.preventDefault();
- document.getElementById('formSuccess').style.display = 'block';
- e.target.reset();
-});
 document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', () => {
  const target = a.getAttribute('href');
  if (target && target.length > 1) setTimeout(() => { history.replaceState(null, '', target); }, 0);
